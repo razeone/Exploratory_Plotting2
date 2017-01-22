@@ -9,8 +9,9 @@ dim(scc) # 11717 * 15
 # Let's merge the data
 mergedData <- merge(scc, nei, by = "SCC")
 # Now let's subset data of LA and Baltimore
-baltAndLa <- mergedData[mergedData$fips == "24510"|mergedData$fips == "06037", ]
+baltAndLa <- mergedData[(mergedData$fips == "24510"|mergedData$fips == "06037") & mergedData$type == "ON-ROAD", ]
 aggData <- aggregate(Emissions ~ year + fips, baltAndLa, sum)
+
 # PNG export settings
 png(filename = "./plots/plot6.png", width = 600,
     height = 600, units = "px")
